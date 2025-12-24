@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Function to convert string to lowercase
+void toLowerCase(char *str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = tolower(str[i]);
+    }
+}
+
+// Chatbot response function
+void chatbotResponse(char *userInput) {
+    toLowerCase(userInput);  // normalize input
+    
+    if (strstr(userInput, "hello") || strstr(userInput, "hi")) {
+        printf("Chatbot: Hello there! How can I help you today?\n");
+    }
+    else if (strstr(userInput, "how are you")) {
+        printf("Chatbot: I'm just a program, but I'm doing great! How about you?\n");
+    }
+    else if (strstr(userInput, "your name")) {
+        printf("Chatbot: I'm a simple chatbot written in C!\n");
+    }
+    else if (strstr(userInput, "bye") || strstr(userInput, "goodbye")) {
+        printf("Chatbot: Goodbye! Have a wonderful day!\n");
+    }
+    else {
+        printf("Chatbot: I'm not sure how to respond to that. Can you rephrase?\n");
+    }
+}
+
+int main() {
+    char input[100];
+    printf("Chatbot: Hi! Type 'bye' to exit.\n");
+    
+    while (1) {
+        printf("You: ");
+        fgets(input, sizeof(input), stdin);
+        
+        // Remove newline character from fgets
+        input[strcspn(input, "\n")] = 0;
+        
+        chatbotResponse(input);
+        
+        if (strstr(input, "bye") || strstr(input, "goodbye")) {
+            break;
+        }
+    }
+    
+    return 0;
+}
