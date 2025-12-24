@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+
+// Simulated image captioning (no ML libraries)
+void captionImage(const char* imageName) {
+    if (strcmp(imageName, "dog.jpg") == 0) {
+        printf("Caption: A cute dog playing in the park.\n");
+    } else if (strcmp(imageName, "car.jpg") == 0) {
+        printf("Caption: A red car driving on the road.\n");
+    } else {
+        printf("Caption: An image of something interesting.\n");
+    }
+}
+
+int main() {
+    char imageName[50];
+    printf("Enter image filename: ");
+    scanf("%s", imageName);
+
+    captionImage(imageName);
+    return 0;
+}
