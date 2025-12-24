@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+
+// Define a simple movie structure
+typedef struct {
+    char title[50];
+    char genre[20];
+} Movie;
+
+// Function to recommend movies based on user preference
+void recommendMovies(Movie movies[], int size, char *preferredGenre) {
+    printf("Recommended movies for genre '%s':\n", preferredGenre);
+    int found = 0;
+    for (int i = 0; i < size; i++) {
+        if (strstr(movies[i].genre, preferredGenre)) {
+            printf("- %s (%s)\n", movies[i].title, movies[i].genre);
+            found = 1;
+        }
+    }
+    if (!found) {
+        printf("No recommendations available for this genre.\n");
+    }
+}
+
+int main() {
+    // Sample dataset
+    Movie movies[] = {
+        {"Inception", "sci-fi"},
+        {"Interstellar", "sci-fi"},
+        {"The Dark Knight", "action"},
+        {"La La Land", "romance"},
+        {"Titanic", "romance"}
+    };
+    int size = sizeof(movies) / sizeof(movies[0]);
+
+    char preferredGenre[20];
+    printf("Enter your preferred genre (sci-fi, action, romance): ");
+    scanf("%s", preferredGenre);
+
+    recommendMovies(movies, size, preferredGenre);
+
+    return 0;
+}
